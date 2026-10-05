@@ -16,22 +16,22 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(SzavazasException.class)
     public ResponseEntity<HibaResponseDto> szavazasHiba(SzavazasException exception) {
-        return ResponseEntity.status(exception.getStatus()).body(new HibaResponseDto(exception.getMessage()));
+        return new ResponseEntity<>(new HibaResponseDto(exception.getMessage()), exception.getStatus());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<HibaResponseDto> validaciosHiba(MethodArgumentNotValidException exception) {
         String hiba = exception.getBindingResult().getAllErrors().stream().map(error -> error.getDefaultMessage()).distinct().collect(Collectors.joining(" "));
-        return ResponseEntity.badRequest().body(new HibaResponseDto(hiba));
+        return new ResponseEntity<>(new HibaResponseDto(hiba), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<HibaResponseDto> jsonHiba(HttpMessageNotReadableException exception) {
-        return ResponseEntity.badRequest().body(new HibaResponseDto("Hibás JSON-struktúra, időpont vagy érvénytelen szavazás-, eljárás-, illetve szavazatkód."));
+        return new ResponseEntity<>(new HibaResponseDto("Hibás JSON-struktúra, időpont vagy érvénytelen szavazás-, eljárás-, illetve szavazatkód."), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<HibaResponseDto> egyedisegiHiba(DataIntegrityViolationException exception) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(new HibaResponseDto("Az időpont vagy a képviselő szavazata már szerepel az adatbázisban."));
+        return new ResponseEntity<>(new HibaResponseDto("Az időpont vagy a képviselő szavazata már szerepel az adatbázisban."), HttpStatus.CONFLICT);
     }
 }
