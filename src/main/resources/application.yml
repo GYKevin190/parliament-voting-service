@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: parliament-voting-service
+  datasource:
+    url: jdbc:h2:file:./data/szavazasok;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: ""
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC

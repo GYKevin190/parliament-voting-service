@@ -1,43 +1,31 @@
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### IntelliJ IDEA ###
-*.iws
-*.iml
-*.ipr
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
-
-### Eclipse ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-
-### VS Code ###
-.vscode/
-
-### Mac OS ###
-.DS_Store
-
-#### Customs ###
+# Build output and local caches
 .gradle/
+build/
+out/
+*.class
+*.jar
+*.war
+*.zip
+
+# The Gradle Wrapper belongs in Git
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE settings
 .idea/
-*.log
+*.iml
+*.iws
+*.ipr
+.vscode/
+.classpath
+.project
+.settings/
+
+# Local database, logs and operating-system files
 data/
+*.log
+*.mv.db
+*.trace.db
+.DS_Store
+Thumbs.db
+hs_err_pid*
+replay_pid*
