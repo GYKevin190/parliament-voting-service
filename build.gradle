@@ -31,3 +31,8 @@ dependencies {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
+
+tasks.named('bootBuildImage') {
+    imageName = "${project.name}:${project.version}"
+    environment = ['BP_JVM_VERSION': '21']
+}
